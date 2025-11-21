@@ -67,22 +67,7 @@ Thank you for considering contributing to rollout-bucket! 🎉
 
 ### Commit Message Convention
 
-We follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-- `feat:` - New feature
-- `fix:` - Bug fix
-- `docs:` - Documentation changes
-- `test:` - Adding or updating tests
-- `chore:` - Maintenance tasks
-- `refactor:` - Code refactoring
-
-Examples:
-```
-feat: add support for custom hash seeds
-fix: handle empty variant array correctly
-docs: improve getVariant examples
-test: add chi-square distribution test
-```
+We follow [Conventional Commits](https://www.conventionalcommits.org/). Use prefixes: `feat:`, `fix:`, `docs:`, `test:`, `chore:`, or `refactor:`.
 
 ### Submitting a Pull Request
 

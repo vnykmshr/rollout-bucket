@@ -239,51 +239,32 @@ const isBetaEligible =
 
 ## How It Works
 
-### Deterministic Hashing
-
-`rollout-bucket` uses MurmurHash3 (32-bit) to convert `feature:identifier` into a deterministic hash value, then maps it to a bucket (0-99) via modulo operation.
+`rollout-bucket` uses MurmurHash3 (32-bit) to convert `feature:identifier` into a deterministic hash, then maps it to a bucket (0-99) via modulo operation:
 
 ```
 hash("feature:user-123") → 2847562934 → mod 100 → 34
 ```
 
-This ensures:
+This ensures **consistency** (same user always gets same bucket), **independence** (different features produce uncorrelated buckets), and **uniformity** (each bucket has ~1% probability). Feature names are part of the hash input, preventing "lock-in" where users always see all new features or none.
 
-1. **Consistency**: Same user always gets same bucket for a feature
-2. **Independence**: Different features produce uncorrelated buckets
-3. **Uniformity**: Each bucket has equal probability (~1%)
-
-### Feature Isolation
-
-Feature names are part of the hash input, ensuring different features produce independent distributions:
-
-```typescript
-rollout.getBucket('feature-a', 'user-1'); // e.g., bucket 42
-rollout.getBucket('feature-b', 'user-1'); // e.g., bucket 17
-```
-
-This prevents "lock-in" where users always see all new features or none.
-
-### Statistical Validation
-
-The library is tested with chi-square goodness-of-fit tests to verify uniform distribution across 10,000 users, ensuring accurate percentage-based rollouts.
+The library is validated with chi-square tests across 10,000 users to ensure accurate percentage-based distributions.
 
 ## Important Considerations
 
 ### What This Library Does
 
-✅ Deterministic bucketing for percentage-based feature flags
-✅ Statistically uniform distribution of users across buckets
-✅ Feature-independent bucket assignment
-✅ Multi-variant experiment support
+- Deterministic bucketing for percentage-based feature flags
+- Statistically uniform distribution of users across buckets
+- Feature-independent bucket assignment
+- Multi-variant experiment support
 
 ### What This Library Does NOT Do
 
-❌ **User targeting**: No support for targeting specific users/segments
-❌ **Dynamic configuration**: No remote config or feature flag service
-❌ **Analytics**: No event tracking or experiment analysis
-❌ **Persistence**: No state management or database integration
-❌ **Cryptographic security**: MurmurHash is NOT cryptographically secure
+- **User targeting**: No support for targeting specific users/segments
+- **Dynamic configuration**: No remote config or feature flag service
+- **Analytics**: No event tracking or experiment analysis
+- **Persistence**: No state management or database integration
+- **Cryptographic security**: MurmurHash is NOT cryptographically secure
 
 ### When to Use
 
@@ -299,50 +280,9 @@ The library is tested with chi-square goodness-of-fit tests to verify uniform di
 - You need centralized feature flag management
 - You want built-in analytics and experiment tracking
 
-## Development
+## Contributing
 
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/vnykmshr/rollout-bucket.git
-cd rollout-bucket
-
-# Install dependencies
-npm install
-
-# Run tests
-npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with coverage
-npm run test:coverage
-
-# Build the package
-npm run build
-
-# Lint code
-npm run lint
-
-# Format code
-npm run format
-```
-
-### Project Scripts
-
-- `npm test` - Run test suite
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:coverage` - Generate coverage report
-- `npm run build` - Build ESM and CJS distributions
-- `npm run clean` - Remove build artifacts
-- `npm run lint` - Check code style
-- `npm run format` - Auto-fix code formatting
-
-### Contributing
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed contribution guidelines.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup, testing guidelines, and contribution workflow.
 
 ## Performance
 
