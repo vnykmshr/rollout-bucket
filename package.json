@@ -1,6 +1,6 @@
 {
   "name": "rollout-bucket",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Deterministic percentage-based bucketing for feature flags and A/B tests",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
