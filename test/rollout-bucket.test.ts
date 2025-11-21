@@ -60,6 +60,44 @@ describe('RolloutBucket', () => {
 
       expect(rollout1.getBucket(feature, identifier)).toBe(rollout2.getBucket(feature, identifier));
     });
+
+    it('should produce uniform distribution (chi-square test)', () => {
+      const rollout = new RolloutBucket();
+      const totalUsers = 10000;
+      const numBuckets = 100;
+      const expectedPerBucket = totalUsers / numBuckets;
+
+      // Count occurrences in each bucket
+      const bucketCounts = new Array(numBuckets).fill(0);
+      for (let i = 0; i < totalUsers; i++) {
+        const bucket = rollout.getBucket('feature', `user-${i}`);
+        bucketCounts[bucket]++;
+      }
+
+      // Calculate chi-square statistic: Σ((observed - expected)² / expected)
+      let chiSquare = 0;
+      for (let i = 0; i < numBuckets; i++) {
+        const observed = bucketCounts[i];
+        const diff = observed - expectedPerBucket;
+        chiSquare += (diff * diff) / expectedPerBucket;
+      }
+
+      // For 99 degrees of freedom (100 buckets - 1) and α=0.05 significance level,
+      // the critical value is approximately 123.23
+      // We use a more lenient threshold of 135 to account for random variation
+      // Reference: https://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm
+      const criticalValue = 135;
+
+      expect(chiSquare).toBeLessThan(criticalValue);
+
+      // Also verify that each bucket has a reasonable count (within 3 standard deviations)
+      // Standard deviation for uniform distribution ≈ sqrt(n*p*(1-p)) ≈ 9.95
+      // 3 standard deviations ≈ 30
+      for (let i = 0; i < numBuckets; i++) {
+        expect(bucketCounts[i]).toBeGreaterThan(expectedPerBucket - 30);
+        expect(bucketCounts[i]).toBeLessThan(expectedPerBucket + 30);
+      }
+    });
   });
 
   describe('isEnabled()', () => {
