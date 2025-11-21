@@ -1,0 +1,25 @@
+{
+  "name": "rollout-bucket",
+  "version": "0.0.1",
+  "description": "Deterministic percentage-based bucketing for feature flags and A/B tests",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "echo \"Build script not yet configured\"",
+    "test": "echo \"Test script not yet configured\"",
+    "lint": "echo \"Lint script not yet configured\"",
+    "format": "echo \"Format script not yet configured\""
+  },
+  "keywords": [
+    "feature-flags",
+    "feature-toggles",
+    "ab-testing",
+    "rollout",
+    "bucketing",
+    "experimentation",
+    "canary"
+  ],
+  "author": "Vinayak Mishra <viks@vnykmshr.com>",
+  "license": "MIT",
+  "type": "module"
+}
