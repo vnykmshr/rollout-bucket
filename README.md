@@ -2,8 +2,10 @@
 
 Deterministic percentage-based bucketing for feature flags and A/B testing.
 
-[![npm version](https://badge.fury.io/js/rollout-bucket.svg)](https://www.npmjs.com/package/rollout-bucket)
+[![npm version](https://img.shields.io/npm/v/rollout-bucket.svg)](https://www.npmjs.com/package/rollout-bucket)
+[![npm downloads](https://img.shields.io/npm/dm/rollout-bucket.svg)](https://www.npmjs.com/package/rollout-bucket)
 [![CI](https://github.com/vnykmshr/rollout-bucket/actions/workflows/ci.yml/badge.svg)](https://github.com/vnykmshr/rollout-bucket/actions)
+[![License](https://img.shields.io/npm/l/rollout-bucket.svg)](https://github.com/vnykmshr/rollout-bucket/blob/main/LICENSE)
 
 ## Overview
 
