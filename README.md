@@ -169,4 +169,4 @@ MIT © vnykmshr
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and guidelines. See [CHANGELOG.md](./CHANGELOG.md) for version history.
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for development setup and guidelines. See [CHANGELOG.md](docs/CHANGELOG.md) for version history.

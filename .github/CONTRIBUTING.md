@@ -47,7 +47,7 @@ Thank you for considering contributing to rollout-bucket! 🎉
    - Write code in `src/`
    - Add/update tests in `test/`
    - Update README if adding features
-   - Update CHANGELOG.md
+   - Update docs/CHANGELOG.md
 
 3. **Test your changes:**
    ```bash
@@ -148,7 +148,7 @@ rollout-bucket/
 
 ## Questions?
 
-- 📖 Check the [README](./README.md) for API documentation
+- 📖 Check the [README](../README.md) for API documentation
 - 🐛 [Open an issue](https://github.com/vnykmshr/rollout-bucket/issues) for bugs
 - 💡 [Start a discussion](https://github.com/vnykmshr/rollout-bucket/discussions) for questions
 
