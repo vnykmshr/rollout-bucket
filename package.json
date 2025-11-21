@@ -7,7 +7,7 @@
   "scripts": {
     "build": "echo \"Build script not yet configured\"",
     "test": "echo \"Test script not yet configured\"",
-    "lint": "echo \"Lint script not yet configured\"",
+    "lint": "eslint .",
     "format": "echo \"Format script not yet configured\""
   },
   "keywords": [
@@ -27,6 +27,9 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1"
+    "@types/node": "^24.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.47.0",
+    "@typescript-eslint/parser": "^8.47.0",
+    "eslint": "^9.39.1"
   }
 }
