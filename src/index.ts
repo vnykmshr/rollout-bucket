@@ -77,5 +77,4 @@ export class RolloutBucket {
   }
 }
 
-// Default export
 export default RolloutBucket;
