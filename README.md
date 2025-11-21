@@ -112,6 +112,29 @@ const tier = rollout.getVariant('service-tier', userId, [
 
 Weights are cumulative: `[{w: 30}, {w: 30}, {w: 40}]` assigns buckets 0-29, 30-59, 60-99. If weights don't sum to 100, remaining buckets get the last variant.
 
+## TypeScript
+
+Fully typed with TypeScript. Types are bundled - no separate `@types` installation needed.
+
+```typescript
+import { RolloutBucket, Variant } from 'rollout-bucket';
+
+// Full type inference
+const rollout = new RolloutBucket();
+const bucket: number = rollout.getBucket('feature', 'user');
+const enabled: boolean = rollout.isEnabled('feature', 'user', 50);
+
+// Generic support for variant names
+const variant: 'control' | 'treatment' | null = rollout.getVariant(
+  'experiment',
+  'user',
+  [
+    { name: 'control' as const, weight: 50 },
+    { name: 'treatment' as const, weight: 50 },
+  ]
+);
+```
+
 ## How It Works
 
 Uses MurmurHash3 (32-bit) to convert `feature:identifier` into a deterministic hash, then maps to bucket via modulo:
