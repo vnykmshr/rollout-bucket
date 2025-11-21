@@ -31,6 +31,6 @@ export default [
     },
   },
   {
-    ignores: ['node_modules/', 'dist/', 'coverage/', 'todos/', '*.config.js'],
+    ignores: ['node_modules/', 'dist/', 'coverage/', 'todos/', '*.config.js', '*.config.ts'],
   },
 ];
